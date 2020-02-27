@@ -1,0 +1,12 @@
+{% extends 'hazards/base.html' %}
+{% block page %}
+    <h1>
+        Dodaj swój klocek do generatora
+    </h1>
+    <form action="{% url 'part' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+    <a href="{% url 'hazard' %}">Wygeneruj nowy hazard</a>
+{% endblock %}

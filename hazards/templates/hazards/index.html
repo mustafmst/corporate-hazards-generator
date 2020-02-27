@@ -1,0 +1,10 @@
+{% extends 'hazards/base.html' %}
+{% block page %}
+    <h1>
+        Hazard na dziś!
+    </h1>
+    <p>
+        {{ hazard }}
+    </p>
+    <a href="{% url 'hazard' %}">Wygeneruj nowy hazard</a>
+{% endblock %}
