@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from os import environ
+
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0**ckiih3c2$cwu+w&a9rd3n*ay5e7v)nc)gebmyluevupptc9'
+SECRET_KEY = environ.get('SECRET_KEY', '2k*14r%m*5mia97#+g^uk*9bi(w!i+4ft_-s@!kjcl=@9xeea5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,8 +80,12 @@ WSGI_APPLICATION = 'hazard_generator.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE':  environ.get('DATABASE_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': environ.get('DATABASE_NAME', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': environ.get('DATABASE_USER', ''),
+        'PASSWORD': environ.get('DATABASE_PASSWORD', ''),
+        'HOST': environ.get('DATABASE_HOST', ''),
+        'PORT': environ.get('DATABASE_POST', '')
     }
 }
 
