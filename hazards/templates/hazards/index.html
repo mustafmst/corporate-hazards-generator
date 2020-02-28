@@ -3,9 +3,9 @@
     <h1>
         Hazard na dziś!
     </h1>
-    <p>
+    <h3>
         {{ hazard }}
-    </p>
-    <a href="{% url 'hazard' %}" class="btn">Wygeneruj nowy hazard</a>
-    <a href="{% url 'part' %}" class="btn">Dodaj swój klocek</a>
+    </h3>
+    <a href="{% url 'hazard' %}" class="btn btn-info">Wygeneruj nowy hazard</a>
+    <a href="{% url 'part' %}" class="btn btn-success">Dodaj swój klocek</a>
 {% endblock %}
