@@ -3,13 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block page %}
-    <h1>
-        Dodaj swój klocek do generatora
-    </h1>
-    <form action="{% url 'part' %}" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" value="Submit" class="btn btn-success">
-    </form>
-    <a href="{% url 'hazard' %}" class="btn btn-info">Wygeneruj nowy hazard</a>
+<h1>
+    Dodaj swój klocek do generatora
+</h1>
+<form action="{% url 'part' %}" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit" class="btn btn-success">
+</form>
+<a href="{% url 'hazard' %}" class="btn btn-info">Wygeneruj nowy hazard</a>
 {% endblock %}

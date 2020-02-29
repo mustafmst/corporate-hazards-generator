@@ -1,11 +1,35 @@
 {% extends 'hazards/base.html' %}
 {% block page %}
-    <h1>
-        Hazard na dziś!
-    </h1>
-    <h3 style="padding-bottom: 2em">
-        {{ hazard }}
-    </h3>
-    <a href="{% url 'hazard' %}" class="btn btn-info">Wygeneruj nowy hazard</a>
-    <a href="{% url 'part' %}" class="btn btn-success">Dodaj swój klocek</a>
+<h1>
+  Hazard na dziś!
+</h1>
+<h3 style="padding-bottom: 2em">
+  {{ hazard }}
+</h3>
+<a href="{% url 'hazard' %}" class="btn btn-info">Wygeneruj nowy hazard</a>
+<a href="{% url 'part' %}" class="btn btn-success">Dodaj swój klocek</a>
+<script>
+  $(function () {
+    var wasRead = false;
+    speechSynthesis.onvoiceschanged = function () {
+      var voice = window.speechSynthesis.getVoices().filter(v => v.lang === "pl-PL")[0];
+      if (voice === undefined) {
+        console.log("Text to speech does not work.")
+      }
+      else {
+        var msg = new SpeechSynthesisUtterance();
+        msg.voice = voice;
+        msg.text = "{{ hazard }}";
+
+        msg.onend = function (e) {
+          console.log('Finished in ' + event.elapsedTime + ' seconds.');
+        };
+        if (!wasRead) {
+          speechSynthesis.speak(msg);
+          wasRead = true;
+        }
+      }
+    }
+  });
+</script>
 {% endblock %}
